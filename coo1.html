@@ -1,0 +1,435 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="hu" class="stylish-select"><head><meta charset="utf-8"><title>
+SZTE CooSpace
+</title>
+    <base href="https://www.coosp.etr.u-szeged.hu/">
+    <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9"><meta name="format-detection" content="telephone=no"><meta name="viewport" content="width=device-width, initial-scale=0.75, maximum-scale=1, user-scalable=no">
+    <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <link rel="stylesheet" type="text/css" href="/Resources/Stylesheet/LyRUaGVtZS1lZHUzJC9Db250ZW50L1RoZW1lL21haW4ubGVzcw.css?v=4609E8F3A4ACA15E33D1">
+<link rel="stylesheet" type="text/css" href="/Resources/Stylesheet/LyRDdXN0b20kL0NvbnRlbnQvY3VzdG9tLmxlc3M.css?v=9F24C4DAA9C4F4968799">
+
+    <link rel="shortcut icon" href="/favicon.ico">
+    <script type="text/javascript" src="/Resources/Script/ZGVmYXVsdA.js?l=hu&amp;v=A242FF846816C5BA8D4D"></script>
+<script type="text/javascript" src="/Resources/Script/ZG5k.js?l=hu&amp;v=7D5F0BE9559DCFF2E55D"></script>
+<script type="text/javascript">//<![CDATA[
+window.__antiCSRFtoken = 'seUhGb2ffis=';
+//]]></script>
+    <script type="text/javascript">
+        $(function () {
+            $('ul.autocurr > li > a').click(function (ev) {
+                var o = ev.currentTarget.parentNode;
+                $('li', o.parentNode).removeClass('current');
+                $(o).addClass('current');
+            });
+
+            //	        var pos = $('#breadcrumb').position();
+            //	        window.scrollTo(0, pos.top - 22);
+
+            var pos = $('#wrapper').position();
+            $('#spaceholder').css("height", $('#header').height() + $('#breadcrumb2').height() + "px");
+
+            $(window).scroll(function () {
+                if ($(window).width() > 990) { //mobil hack !!!
+                    var sy = $(window).scrollTop();
+
+                    if (sy > Math.max(0, pos.top - 70)) {
+                        if (!$(document.body).hasClass('fixedheader'))
+                            $(document.body).addClass('fixedheader');
+                    } else {
+                        if ($(document.body).hasClass('fixedheader'))
+                            $(document.body).removeClass('fixedheader');
+                    }
+                }
+            });
+
+            /*naptár hét hover*/
+            $('table.monthcalendar tr.week td.weekheader').hover(
+                function () {
+                    $(this).parent().addClass('hovered');
+                }, function () {
+                    $(this).parent().removeClass('hovered');
+                }
+            );
+
+            var bc = $('#breadcrumb > ul > li');
+            bc.css({ maxWidth: Math.floor(100 / bc.length) + '%' }).each(function (i, o) { $(o).attr('title', $(o).text()); });
+
+            $('#sec_bigvmenu li > a').click(function () {
+                if ($('#sec_bigvmenu').hasClass('showmobil')) {
+                    $('#sec_bigvmenu').removeClass('showmobil');
+                    $('#Menu_bigvmenu').removeClass('selected');
+                }
+            });
+        });
+
+        /* mobil !!! nézet */
+        function mobilheader(item, menu) {
+            $(item).toggleClass('showmobil');
+            var arr = ['#header2', '#header', '#sec_bigvmenu', '#sec_calendar', '#sec_filter'];
+            arr = jQuery.grep(arr, function( a ) {
+                return a !== item;
+            });
+
+            $(arr.join(', ')).removeClass('showmobil');
+
+            if (menu != null) {
+                menu = '#' + menu;
+                $(menu).toggleClass('selected');
+            }
+            arr = ['#Menu_Header2', '#Menu_Header', '#Menu_bigvmenu', '#Menu_calendar', '#Menu_filter'];
+            arr = jQuery.grep(arr, function (a) {
+                return a !== menu;
+            });
+
+            $(arr.join(', ')).removeClass('selected');
+        };
+    </script>
+
+	<script type="text/javascript" src="/Resources/Script/fi8kQ29yZSQvU2NyaXB0cy9qcXVlcnkuc2Nyb2xsVG8uanM.js?l=hu&amp;v=AD25F04185BD899F5C01"></script>
+<script type="text/javascript" src="/Resources/Script/fi9TY3JpcHRzL3NjZW5lLmpz.js?l=hu&amp;v=137D926FDADB83657566"></script>
+<script type="text/javascript" src="/Resources/Script/fi9TY3JpcHRzL0hvbWUuanM.js?l=hu&amp;v=D4E4B26E53F151B581A2"></script>
+<script type="text/javascript" src="/Resources/Script/dG9vbA.js?l=hu&amp;v=6885ECEA2B62563CD2EC"></script>
+
+	<script type="text/javascript">//<![CDATA[
+url_settooltypevisibility = "/Scene-770840/SetTooltypeVisibility";
+url_savescenecategory = "/Home/SaveSceneCategory";
+url_createtool = "/Scene-770840/CreateTool";
+url_moremember = "/Scene-770840/MoreMember";
+//]]></script>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			hide_tools();
+		});
+	</script>
+	<script type="text/javascript">
+	    var lastCategoryChooserId = 0;
+	    var refreshPage = false;
+	</script>
+    <style>
+        .asd{
+        font-size: 2px}
+    </style>
+</head>
+
+<body>
+
+    <div id="header1">
+        <div>
+            <div id="header1r">
+
+
+
+
+        <div class="onlinefriends">
+            <a href="javascript:;" class="icon">
+                <span class="count">0</span>
+            </a>
+            <div id="main_friends">
+
+                <div id="main_friendsemptytemplate" style="display:none;">
+                    <div class="nofriends">Nincsenek barátaid :(</div>
+                </div>
+                <div id="main_friendstemplate" class="main_friend" style="display:none;">
+                    <a href="/CSMS/Messages?partner_id=-999999" class="username"><span class="image"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=" alt=""></span><span class="name">@displayname@</span><div style="clear:both;"></div></a>
+                </div>
+                <div id="main_friendscontent">
+                    <div id="main_friendslist">
+                    <div class="nofriends">Nincsenek barátaid</div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            if (!window.sessionping) window.sessionping = {};
+            if (window.sessionping.Friends == null)
+                window.sessionping.Friends = '';
+
+            function show_allfriends() {
+                $('#main_friendslist .main_friend').show();
+                $('#show_allfriends').hide();
+            }
+        </script>
+
+
+        <div class="name"><a href="javascript:;" class="icon"></a><span title="Valaki"></span><div class="menu">
+                <div class="info">
+                    <a href="/My/Profile/ChangePicture" class="pic"><img src="/$Theme-edu3$/Content/Theme/NoPicture_Medium.png" alt="profilkép"></a>
+                    <div class="name">Valaki</div>
+                    <div class="email"><a href="/My/Profile/Modify">kiskuki@freemail.com</a></div>
+                    <div class="lastlogin">Utolsó belépés: <span class="since" title="2025-01-15T20:36:16">69 éve</span></div>
+                </div>
+            </div>
+        </div>
+            </div>
+            <div class="toplogo" onclick="location.href='/';">Szegedi Tudományegyetem</div>
+        </div>
+    </div>
+
+    <div id="spaceholder" class="hide" style="height: 114.2px;"></div>
+
+    <nav id="mobilheader">
+
+    <a href="/"></a><a href="javascript:;" onclick="mobilheader('#sec_calendar', this.id);" id="Menu_calendar">
+        </a><a href="javascript:;" onclick="mobilheader('#sec_filter', this.id);" id="Menu_filter">
+        </a><a href="javascript:;" onclick="mobilheader('#sec_bigvmenu', this.id);" id="Menu_bigvmenu">
+        </a><a href="javascript:;" onclick="mobilheader('#header', this.id);" id="Menu_Header">
+        </a><a href="javascript:;" onclick="mobilheader('#header2', this.id);" id="Menu_Header2"></a>
+
+        <div id="header2">
+            <ul>
+                <li><span class="langs">
+                <a href="https://www.coosp.etr.u-szeged.hu/Home?_lang=hu" class="lang lang_current">HU</a> <a href="https://www.coosp.etr.u-szeged.hu/Home?_lang=en" class="lang">EN</a> <a href="https://www.coosp.etr.u-szeged.hu/Home?_lang=de" class="lang">DE</a>
+                </span>
+                </li>
+
+            <li class="onlineusers"><a href="/Home/OnlineUsers">összes online felhasználó</a></li>
+            <li class="events"><a href="/Events">7 értesítés</a></li>
+            <li class="profil"><a href="/My/Profile">profil szerkesztése</a></li>
+            <li class="eventsettings"><a href="/My/Profile/EventSettings">eseményértesítők</a></li>
+            <li class="logout"><a href="/Account/Logout">kilépés</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <header id="header">
+        <nav id="header3">
+            <ul>
+            <li class="menu_scenes current"><a>színterek</a></li><li class="menu_folder"><a>Mappa</a></li><li class="menu_calendar"><a>ma</a></li><li class="menu_csms"><a href="javascript:;">üzenetek</a><script type="text/javascript">//<![CDATA[
+if (!window.sessionping) window.sessionping = {};
+window.sessionping.CSMS = '2025-01-16T15:49:10|null';
+SSE_subscribe('CSMS.messagecount', function(ev) { sessionping_callback_CSMS(ev.data); });
+csms_partner_template = '<div id="csms_leftpartner_@ID@" class="csms_partner" style="display:none;"><div class="csms_partnertitle" onclick="left_select_partner(&#39;/CSMS/LeftMessages?partner_id=%40ID%40&#39;, @ID@);"><span class="csms_partnername">@NAME@</span><span class="csms_partnerunreads">@UNREAD@</span><div style="clear:both;"></div></div><div class="csms_popup"><div id="csms_messages_@ID@" class="csms_messages"></div><div class="csms_newmessage" style="display:none;"><textarea name="message"></textarea><br/><div class="csms_leftbuttons control"><a class="linkbutton24" href="javascript:;" onclick="if (confirmdirty()) { left_close_partner(@ID@); };return false;" oncontextmenu="return false;" style="padding-left: 29px; background-image: url(/$Theme-edu3$/Content/Theme/new/ControlButtons/megsem.png); line-height: 24px;">Bez&#225;r&#225;s</a><a class="linkbutton24" href="javascript:;" onclick="if (confirmdirty()) { left_send_message(&#39;/CSMS/SendMessage&#39;, @ID@); };return false;" oncontextmenu="return false;" style="padding-left: 29px; background-image: url(/$Theme-edu3$/Content/Theme/new/ControlButtons/mentes.png); line-height: 24px;">K&#252;ld&#233;s</a></div><div style="clear:both;"></div></div><div class="csms_disabled_me" style="display:none;">A felhasználó nem engedélyezi az üzenetküldést!<div class="csms_leftbuttons control"><a class="linkbutton24" href="javascript:;" onclick="if (confirmdirty()) { left_close_partner(@ID@); };return false;" oncontextmenu="return false;" style="padding-left: 29px; background-image: url(/$Theme-edu3$/Content/Theme/new/ControlButtons/megsem.png); line-height: 24px;">Bez&#225;r&#225;s</a></div></div></div></div>'
+//]]></script><script type="text/javascript" src="/Resources/Script/fi8kQ1NNUyQvU2NyaXB0cy9jc21zLmpz.js?l=hu&amp;v=48547F7B65C9354F1AEB"></script>
+<div id="csms_message_count" class="count">+99</div><div id="csms_leftcontent"><div class="csms_allmessage"><a class="linkbutton2" id="csms_allmessage">összes üzenet</a></div><div id="csms_partners"><span class="csms_nomessage" style="display:none;">Nincs olvasatlan üzenet.</span><div id="csms_leftpartner_259719" class="csms_partner"><div class="csms_partnertitle"><span class="csms_partnername">Gambling</span><span class="csms_partnerunreads">69</span><div style="clear:both;"></div></div><div class="csms_popup"><div id="csms_messages_259719" class="csms_messages"></div><div class="csms_newmessage" style="display:none;"><textarea name="message"></textarea><br><div class="csms_leftbuttons control"><a class="linkbutton24" href="javascript:;" onclick="if (confirmdirty()) { left_close_partner(259719); };return false;" oncontextmenu="return false;" style="padding-left: 29px; background-image: url(/$Theme-edu3$/Content/Theme/new/ControlButtons/megsem.png); line-height: 24px;">Bezárás</a><a class="linkbutton24" href="javascript:;" onclick="if (confirmdirty()) { left_send_message('/CSMS/SendMessage', 259719); };return false;" oncontextmenu="return false;" style="padding-left: 29px; background-image: url(/$Theme-edu3$/Content/Theme/new/ControlButtons/mentes.png); line-height: 24px;">Küldés</a></div><div style="clear:both;"></div></div><div class="csms_disabled_me" style="display:none;">A felhasználó nem engedélyezi az üzenetküldést!<div class="csms_leftbuttons control"><a class="linkbutton24" href="javascript:;" onclick="if (confirmdirty()) { left_close_partner(259719); };return false;" oncontextmenu="return false;" style="padding-left: 29px; background-image: url(/$Theme-edu3$/Content/Theme/new/ControlButtons/megsem.png); line-height: 24px;">Bezárás</a></div></div></div></div></div></div></li><li class="menu_video"><a>Videó</a><ul><li class="video_schedule"><a>fogadóóra</a></li><li class="video_chat"><a>videochat</a></li></ul><script type="text/javascript" src="/Resources/Script/fi8kVmlkZW8kL1NjcmlwdHMvY2FsbC5qcw.js?l=hu&amp;v=06A8280CDAA8E542E16B"></script>
+<link rel="stylesheet" type="text/css">
+<script type="text/javascript">//<![CDATA[
+url_videocall = "/Video/Call";
+url_rejectvideocall = "/Video/Reject";
+//]]></script>
+</li><li class="menu_notes"><a>jegyzeteim</a></li><li class="menu_quiz"><a>kérdések</a><ul><li class="qbank"><a>Kérdésbank</a></li><li class="qform"><a>Kérdéssor-tár</a></li></ul></li><li class="menu_glossary"><a>Fogalomtár</a></li><li class="menu_trainer"><a>Tréner</a></li><li class="menu_news"><a>hírek</a><ul><li><a>Neptun</a></li><li><a>Modulo</a></li><li><a>SZTE-honlap</a></li><li><a>ETRdok</a></li><li><a>Videósúgó</a></li><li><a>Egyetemi telefonkönyv</a></li><li><a>Levél a helyi adminnak</a></li><li><a>ETR</a></li></ul></li><li class="menu_heatmap"><a>Heatmap</a></li>
+            </ul>
+        </nav>
+    </header><!-- #header-->
+    <div id="breadcrumb2">
+    <nav id="breadcrumb">
+        <ul>
+
+        </ul>
+
+        <div style="clear:both"></div>
+    </nav>
+    </div>
+
+<div id="wrapper">
+    <div id="widecontent">
+
+
+
+        <aside class="left"><div>
+            <section id="sec_filter"></section>
+        </div></aside>
+
+        <section class="realcontent">
+            <div class="icon" style="background-image: url(/$Theme-edu3$/Content/Theme/new/tool_scene.png)"></div>
+            <h1>
+             <a href="javascript:;" onclick="javascript: $('section.tools ul, section.tools div.description, section.tools ul + div.warning').slideToggle('fast');"><span class="title">Ivóskurzus 1.</span></a>
+             <div><span class="code">ASD42069Q</span><span class="term">2024/25/1</span><ul><li data-cats="0"><span class="categorychooser" onclick="categorychooser(this, '/Home/CategoryChooser', 770840,true)"><span class="bracket"><span class="invisible" title="Nincs kategória"></span></span></span></li></ul></div>
+            </h1>
+
+
+
+<div id="toolheader_events" style="display:none"></div><div id="toolheader_members" style="display:none"></div><div class="toolheader_description"><div><ul class="scenedesc"><li class="scenedesc_header"><a href="javascript:;" onclick="show_info('#scenedesc_html3', this);">Követelmények</a></li><li class="scenedesc_header"><a href="javascript:;" onclick="show_info('#scenedesc_html2', this);">Tematika</a></li><li class="scenedesc_header"><a href="javascript:;" onclick="show_info('#scenedesc_html4', this);">Vizsga követelmény</a></li></ul><div id="scenedesc_html3" class="scenedesc" style="display: none;"><div><p><span style="text-decoration: underline;">A félév végi aláírás megszerzésének feltételei</span></p><ul><li>A gyakorlaton <b>kötelező a részvétel</b>.</li><li><b>0 óraszámot meghaladó (igazolt vagy igazolatlan) hiányzás </b><b>esetén </b><b>"Nem értékelhető"</b> bejegyzés kerül a Neptunba a hallgató által felvett Ivós kurzus 1. értékeléseként.</li><li><b>Két ital / óra.</b></li></ul><p>&nbsp;</p><p><span style="text-decoration: underline;">A gyakorlati jegy megszerzésének feltételei és az osztályozás módja</span></p><ul><li>Amennyiben a hallgató megjelenik teljesítménye a pontok alapján számítandó a következő ponthatárok szerint:</li></ul><p>0 (ital)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nem értékelhető</p><p>0 –&nbsp; 5 (ital)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; elégtelen (1)</p><p>6 –&nbsp; 11 (ital) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; elégséges (2)</p><p>12 –&nbsp; 20 (ital) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; közepes (3)</p><p>21 –&nbsp; 37 (ital) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jó (4)</p><p>38 –&nbsp; 50 (ital) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jeles (5)</p><p>50+ (ital) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kiváló (6)</p><ul><li>Az <b>elégtelen gyakorlati jegy</b> – <b>egy alkalommal, a gyakorlaton a félév végén sem – javítható, mely azt vonja maga után, hogy a kurzus sikertelen</b>. </li><li>A tanulásban akadályozott hallgatóknak az akadályoztatásukat legkésőbb a félév második hetéig a gyakorlatvezetőnek írásban jelezniük kell. Az SZTE Életvezetési Tanácsadó Központ ( <ref id="3efd6e02-8103-ef76-e6d2-019bb1ae8993" url="http://www.eletv.u-szeged.hu/" thumb="1">SZTE Egyetemi Életvezetési Tanácsadó Központ</ref> ) által kiállított akadályoztatást igazoló dokumentumot az első zárthelyi dolgozatot megelőző hétig be kell nyújtani a gyakorlatvezetőnek.</li></ul></div></div><div id="scenedesc_html2" class="scenedesc" style="display: none;"><p>Az alkohol fogyasztás kultúrja!</p><p>Am gecc el ne hidd már! xDDD</p><p>Olyan kibebaszott atomi bebaszás lesz, amelyre nem fogsz emlékezni mégis a legszebb emléked lesz!</p></div><div id="scenedesc_html4" class="scenedesc" style="display: none;">
+            <section>
+            <h3>Beugrók</h3>
+            <ol>
+                <li>
+                    <strong>Vizsgáztató által kinált ital elfogyasztása</strong>
+                    <ul>
+                        <li>Az ital vakon fogyasztását követően meghatározni az italt. (Az ital nem elfogysztása, sikertelen beugrót jelent)</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Liter fröccs</strong>
+                    <ul>
+                        <li>Kevesebb mint 15 perc alatt elfogyasztani.</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+            <section>
+            <h3>Vizsgatételek</h3>
+            <ol>
+                <li>
+                    <strong>A párlatok történeti kronológiája és kulturális jelentősége</strong>
+                    <ul>
+                        <li>Sorold fel a világ 10 legősibb alkoholkészítési módszerét, és részletezd, hogyan befolyásolta ezek elterjedése az emberi civilizáció fejlődését.</li>
+                        <li>Hasonlítsd össze a skót whisky és a japán whisky gyártási különbségeit, és magyarázd el, miért tartják az egyiket jobb társasági italnak a másiknál.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Alkoholfizika és -kémia</strong>
+                    <ul>
+                        <li>Magyarázd el, hogyan változik az alkohol forráspontja a tengerszint feletti magassággal, és számítsd ki, hogy egy 60%-os pálinka milyen hőmérsékleten forr a Himalája alaptáborában!</li>
+                        <li>Ismertesd, miért képes az abszint fluoreszkálni UV-fény alatt, és sorolj fel más italokat, amelyek hasonló tulajdonsággal bírnak.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Alkoholos etikett speciális helyzetekben</strong>
+                    <ul>
+                        <li>Hogyan illik koccintani a japán császár társaságában? Mi a protokoll, ha a császár visszautasítja az italt?</li>
+                        <li>Fogalmazd meg a 12 pontos alkoholos etikett szabályzatot egy űrhajós misszióra!</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Extrém alkoholteszt</strong>
+                    <ul>
+                        <li>Vakteszt során fel kell ismerned legalább 5 különböző évjáratú bort szín, illat és íz alapján.</li>
+                        <li>Be kell bizonyítanod, hogy egy 70%-os rum és egy 40%-os vodka közti különbséget másodpercek alatt érzékeled – természetesen csukott szemmel!</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Mesterszintű koktélkészítés</strong>
+                    <ul>
+                        <li>Reprodukálj egy „Flaming Lamborghini” koktélt anélkül, hogy megégetnéd magad vagy a helyiséget.</li>
+                        <li>Hozz létre egy teljesen új koktélt, amelyben legalább 5 összetevő harmonizál, és adj neki egy találó, emlékezetes nevet.</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+        <section>
+            <h3>Vizsgaszabályok</h3>
+            <ul>
+                <li><strong>Az italok fogyasztása nem opcionális:</strong> Minden felszolgált italt kötelező elfogyasztani. Nem ürítetted ki a poharat? Azonnali bukás!</li>
+                <li><strong>Piszoárba rókázni TILOS!?!?!:</strong> Aki piszoárba okádik azonnali bukás, aki mellé az pedig plusz pont!</li>
+                <li><strong>Az ítélőképesség tesztelése:</strong> Ha bármikor kijelented, hogy „Én már eleget ittam!”, azonnali kizárás a vizsgából.</li>
+                <li><strong>Alkohollal kapcsolatos trivia:</strong> A vizsgabiztos bármikor feltehet egy spontán alkoholtörténeti kérdést. Ha nem tudsz válaszolni, büntetőital jár.</li>
+                <li><strong>Túlélési ösztön felfüggesztése:</strong> A vizsga végére mindenkinek el kell végeznie egy egyensúlytesztet egy széken állva. Ha leesel, újrakezded az egész vizsgát.</li>
+                <li><strong>Társasági pontok:</strong> A vizsga közben humoros megjegyzésekkel és társasági aktivitással kell bizonyítanod, hogy te vagy a társaság szíve-lelke. Az unalmas viselkedés automatikusan bukást von maga után.</li>
+            </ul>
+        </section>
+        <section>
+            <h3 class="asd">Jogi kisokos!</h3>
+    <ol class="asd">
+        <li><strong>Az Italfogyasztás Kötelezettsége</strong><br>
+            A vizsgázó képtelen a felszolgált italt elfogyasztani? Azonnali kizárás és a vizsga érvénytelenítése. Nincs mentség.
+        </li>
+        <li><strong>A Piszoárba Történt Hányás Kategóriájába Tartozik</strong><br>
+            Piszoárba okádás: Bukás. Nem kell magyarázat. Azonnali kirekesztés.
+        </li>
+        <li><strong>A "Már Eleget Ittam!" Mondat Képtelensége</strong><br>
+            „Én már eleget ittam!” kijelentés? Azonnali kizárás. Semmilyen magyarázat nem ér.
+        </li>
+        <li><strong>Az Alkoholos Trivia Kérdések Kudarca</strong><br>
+            Alkoholtörténeti kérdés eltévesztése? Büntetőital. Ha válaszra sem vagy képes, kérdéses a kompetenciád.
+        </li>
+        <li><strong>A Széken Történő Egyensúlyteszt Nem Teljesítése</strong><br>
+            Ha leesel, újrakezded. Nem érdekel a kifogás, új vizsga, új esély!
+        </li>
+        <li><strong>A Társasági Szellem Hiánya</strong><br>
+            Unalmas viselkedés: Azonnali bukás. Ha nem vagy a társaság lelke, nem vagy alkalmas.
+        </li>
+        <li><strong>Az Egyetem Által Fedezett Költségek Hiánya</strong><br>
+            Az egyetem nem állja a vizsga költségeit. Ha nem vagy képes finanszírozni, nem vizsgázol.
+        </li>
+        <li><strong>A Koccintási Protokoll Becsülése</strong><br>
+            Japán császár társaságában rossz koccintás? Bukás. A protokoll ismerete kötelező, különben érvénytelenítjük a vizsgát.
+        </li>
+        <li><strong>A 15 Perces Fröccs Fogyasztás Elmaradása</strong><br>
+            A liter fröccs 15 perc alatt történő elfogyasztásának elmaradása: Azonnali kizárás.
+        </li>
+        <li><strong>Az Új Koktél Készítésének Képtelensége</strong><br>
+            Új koktél létrehozásának képtelensége: Vizsgabukás. A kreativitás és precizitás követelmény.
+        </li>
+    </ol>
+        </section>
+        </div></div></div>
+
+
+
+
+	<div id="sceneoperations_container"></div>
+
+
+	<section class="tools">
+<div><div class="toolheaders"><h2 style="background-image: url(/$Theme-edu3$/Content/Theme/new/tool_newsboard.png)">
+    <a name="newsboard" href="javascript:;" onclick="javascript: $('ul, div.description, ul + div.warning', this.parentNode.parentNode.parentNode).slideToggle('fast');">Hirdetőtáblák</a>
+    <div class="listheaders">
+        <span>Utolsó üzenet</span></div></h2>
+    <div class="description"></div></div>
+    <ul>
+        <li data-id="3113415" class="tt1200">
+            <a href="https://www.pornhub.com" class="name" title="Hirdetőtábla">Hirdetmények</a>
+            <div class="info"></div></li></ul></div>
+        <div>
+            <div class="toolheaders">
+                <h2 style="background-image: url(/$Theme-edu3$/Content/Theme/new/tool_forum.png)">
+                    <a name="forum" href="javascript:;" onclick="javascript: $('ul, div.description, ul + div.warning', this.parentNode.parentNode.parentNode).slideToggle('fast');">Fórumok</a>
+                    <div class="listheaders">
+                        <span>Utolsó hozzászólás</span>
+                        <span>Összes hozzászólás</span></div></h2>
+                <div class="description"></div></div>
+            <ul>
+                <li data-id="3113414" class="tt1100">
+                    <a class="name" title="Fórum">Kurzusfórum</a>
+                    <div class="info"><span class="field"><span>2001. 09. 11. 09:11</span>
+                        <span>6969</span></span></div></li></ul></div>
+        <div>
+            <div class="toolheaders">
+                <h2 style="background-image: url(/$Theme-edu3$/Content/Theme/new/tool_task.png)">
+                    <a name="task" href="javascript:;" onclick="javascript: $('ul, div.description, ul + div.warning', this.parentNode.parentNode.parentNode).slideToggle('fast');">Feladatok</a>
+                    <div class="listheaders"><span>Határidő</span><span>Státusz</span></div></h2>
+                <div class="description"></div></div>
+            <ul>
+                <li data-id="3216327" class="tt1400 past">
+                    <a href="https://onlyfans.com/" class="name" title="Feladat">Szorgalmi feladat 1.</a>
+                    <div class="info"><span class="field"><span>2025. 02. 02. 12:00</span><span>10 pont</span></span></div></li>
+        <div><div class="toolheaders">
+	</section>
+
+	<section class="members">
+<h2>Résztvevők</h2><h3 title="Oktatók száma: 1">Oktatók</h3><ul>
+        <li><a id="userinfolink_1858435500" style="background-image: url(/$Theme-edu3$/Content/Theme/NoPicture_Medium.png)" class="userinfolink linkbutton">Dr. Alkohol</a></li></ul>
+<h3 title="Hallgatók száma: 12">Hallgatók</h3><ul><li></li>
+        <li><a style="background-image: url(/$Theme-edu3$/Content/Theme/NoPicture_Medium.png)" onmouseover="userhint_show(296590, 1728167242, 'javascript:DexModal(\'/Profile/296590?popup=true\', {});', '/$Theme-edu3$/Content/Theme/NoPicture_Medium.png', 'Damásdi Zsolt', 'GSH01V', [], null, true, true, null);" onmouseout="userhint_hide(1728167242);" class="userinfolink linkbutton">Bábinszki Botond</a></li>
+        <li><a style="background-image: url(/$Theme-edu3$/Content/Theme/NoPicture_Medium.png)" onmouseover="userhint_show(296590, 1728167242, 'javascript:DexModal(\'/Profile/296590?popup=true\', {});', '/$Theme-edu3$/Content/Theme/NoPicture_Medium.png', 'Damásdi Zsolt', 'GSH01V', [], null, true, true, null);" onmouseout="userhint_hide(1728167242);" class="userinfolink linkbutton">Baráth Nóra</a></li>
+        <li><a style="background-image: url(/$Theme-edu3$/Content/Theme/NoPicture_Medium.png)" onmouseover="userhint_show(296590, 1728167242, 'javascript:DexModal(\'/Profile/296590?popup=true\', {});', '/$Theme-edu3$/Content/Theme/NoPicture_Medium.png', 'Damásdi Zsolt', 'GSH01V', [], null, true, true, null);" onmouseout="userhint_hide(1728167242);" class="userinfolink linkbutton">Damásdi Zsolt</a></li>
+        <li><a style="background-image: url(/$Theme-edu3$/Content/Theme/NoPicture_Medium.png)" onmouseover="userhint_show(296590, 1728167242, 'javascript:DexModal(\'/Profile/296590?popup=true\', {});', '/$Theme-edu3$/Content/Theme/NoPicture_Medium.png', 'Damásdi Zsolt', 'GSH01V', [], null, true, true, null);" onmouseout="userhint_hide(1728167242);" class="userinfolink linkbutton">Gombos Dániel</a></li>
+        <li><a style="background-image: url(/$Theme-edu3$/Content/Theme/NoPicture_Medium.png)" onmouseover="userhint_show(296590, 1728167242, 'javascript:DexModal(\'/Profile/296590?popup=true\', {});', '/$Theme-edu3$/Content/Theme/NoPicture_Medium.png', 'Damásdi Zsolt', 'GSH01V', [], null, true, true, null);" onmouseout="userhint_hide(1728167242);" class="userinfolink linkbutton">Heim Flóra</a></li>
+        <li><a style="background-image: url(/$Theme-edu3$/Content/Theme/NoPicture_Medium.png)" onmouseover="userhint_show(296590, 1728167242, 'javascript:DexModal(\'/Profile/296590?popup=true\', {});', '/$Theme-edu3$/Content/Theme/NoPicture_Medium.png', 'Damásdi Zsolt', 'GSH01V', [], null, true, true, null);" onmouseout="userhint_hide(1728167242);" class="userinfolink linkbutton">Kónya Laura</a></li>
+        <li><a style="background-image: url(/$Theme-edu3$/Content/Theme/NoPicture_Medium.png)" onmouseover="userhint_show(296590, 1728167242, 'javascript:DexModal(\'/Profile/296590?popup=true\', {});', '/$Theme-edu3$/Content/Theme/NoPicture_Medium.png', 'Damásdi Zsolt', 'GSH01V', [], null, true, true, null);" onmouseout="userhint_hide(1728167242);" class="userinfolink linkbutton">Kónya Lea</a></li>
+        <li><a style="background-image: url(/$Theme-edu3$/Content/Theme/NoPicture_Medium.png)" onmouseover="userhint_show(296590, 1728167242, 'javascript:DexModal(\'/Profile/296590?popup=true\', {});', '/$Theme-edu3$/Content/Theme/NoPicture_Medium.png', 'Damásdi Zsolt', 'GSH01V', [], null, true, true, null);" onmouseout="userhint_hide(1728167242);" class="userinfolink linkbutton">Papp András</a></li><li><a style="background-image: url(/$Theme-edu3$/Content/Theme/NoPicture_Medium.png)" onmouseover="userhint_show(296590, 1728167242, 'javascript:DexModal(\'/Profile/296590?popup=true\', {});', '/$Theme-edu3$/Content/Theme/NoPicture_Medium.png', 'Damásdi Zsolt', 'GSH01V', [], null, true, true, null);" onmouseout="userhint_hide(1728167242);" class="userinfolink linkbutton">Gombos Dániel</a></li>
+        <li><a style="background-image: url(/$Theme-edu3$/Content/Theme/NoPicture_Medium.png)" onmouseover="userhint_show(296590, 1728167242, 'javascript:DexModal(\'/Profile/296590?popup=true\', {});', '/$Theme-edu3$/Content/Theme/NoPicture_Medium.png', 'Damásdi Zsolt', 'GSH01V', [], null, true, true, null);" onmouseout="userhint_hide(1728167242);" class="userinfolink linkbutton">Somi Kamilla</a></li>
+        <li><a style="background-image: url(/$Theme-edu3$/Content/Theme/NoPicture_Medium.png)" onmouseover="userhint_show(296590, 1728167242, 'javascript:DexModal(\'/Profile/296590?popup=true\', {});', '/$Theme-edu3$/Content/Theme/NoPicture_Medium.png', 'Damásdi Zsolt', 'GSH01V', [], null, true, true, null);" onmouseout="userhint_hide(1728167242);" class="userinfolink linkbutton">Szabó Kendra Lara</a></li>
+        <li><a style="background-image: url(/$Theme-edu3$/Content/Theme/NoPicture_Medium.png)" onmouseover="userhint_show(296590, 1728167242, 'javascript:DexModal(\'/Profile/296590?popup=true\', {});', '/$Theme-edu3$/Content/Theme/NoPicture_Medium.png', 'Damásdi Zsolt', 'GSH01V', [], null, true, true, null);" onmouseout="userhint_hide(1728167242);" class="userinfolink linkbutton">Török Karolin</a></li>
+        <li><a style="background-image: url(/$Theme-edu3$/Content/Theme/NoPicture_Medium.png)" onmouseover="userhint_show(296590, 1728167242, 'javascript:DexModal(\'/Profile/296590?popup=true\', {});', '/$Theme-edu3$/Content/Theme/NoPicture_Medium.png', 'Damásdi Zsolt', 'GSH01V', [], null, true, true, null);" onmouseout="userhint_hide(1728167242);" class="userinfolink linkbutton">Zabos Zsófia</a></li>
+
+	</section>
+
+	<div class="footerinfo">Létrehozva: <span class="since" title="2024-07-04T04:15:07">2101. szept. 11.</span> | Utolsó szinkronizáció: <span class="since" title="2025-01-16T04:14:42">300 éve</span></div>
+        </section>
+
+
+
+    </div><!-- #widecontent-->
+
+
+
+</div><!-- #wrapper -->
+
+<footer id="footer">
+    <div>
+        <div class="left">Coolspace v6.9.911</div>
+        <div class="right">Copyright © 1920 MÉSZÁROS L.</div>
+    </div>
+</footer><!-- #footer -->
+
+<script type="text/javascript">
+    sessionKeepAlive('/Account/SessionPing', '/?from=sessionping');
+
+    SSE_init('SSE');
+</script>
+
+
+</body><chatgpt-sidebar data-gpts-theme="light"></chatgpt-sidebar><chatgpt-sidebar-popups data-gpts-theme="light"></chatgpt-sidebar-popups></html>

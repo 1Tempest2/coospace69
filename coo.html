@@ -1,0 +1,360 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="hu" class="stylish-select"><head><meta charset="utf-8"><title>
+SZTE CooSpace
+</title>
+    <base href="https://www.coosp.etr.u-szeged.hu/">
+    <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9"><meta name="format-detection" content="telephone=no"><meta name="viewport" content="width=device-width, initial-scale=0.75, maximum-scale=1, user-scalable=no">
+    <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <link rel="stylesheet" type="text/css" href="/Resources/Stylesheet/LyRUaGVtZS1lZHUzJC9Db250ZW50L1RoZW1lL21haW4ubGVzcw.css?v=4609E8F3A4ACA15E33D1">
+<link rel="stylesheet" type="text/css" href="/Resources/Stylesheet/LyRDdXN0b20kL0NvbnRlbnQvY3VzdG9tLmxlc3M.css?v=9F24C4DAA9C4F4968799">
+
+    <link rel="shortcut icon" href="/favicon.ico">
+    <script type="text/javascript" src="/Resources/Script/ZGVmYXVsdA.js?l=hu&amp;v=A242FF846816C5BA8D4D"></script>
+<script type="text/javascript" src="/Resources/Script/ZG5k.js?l=hu&amp;v=7D5F0BE9559DCFF2E55D"></script>
+<script type="text/javascript">//<![CDATA[
+window.__antiCSRFtoken = 'Y4l0gVyl8qg=';
+//]]></script>
+    <script type="text/javascript">
+        $(function () {
+            $('ul.autocurr > li > a').click(function (ev) {
+                var o = ev.currentTarget.parentNode;
+                $('li', o.parentNode).removeClass('current');
+                $(o).addClass('current');
+            });
+
+            //	        var pos = $('#breadcrumb').position();
+            //	        window.scrollTo(0, pos.top - 22);
+
+            var pos = $('#wrapper').position();
+            $('#spaceholder').css("height", $('#header').height() + $('#breadcrumb2').height() + "px");
+
+            $(window).scroll(function () {
+                if ($(window).width() > 990) { //mobil hack !!!
+                    var sy = $(window).scrollTop();
+
+                    if (sy > Math.max(0, pos.top - 70)) {
+                        if (!$(document.body).hasClass('fixedheader'))
+                            $(document.body).addClass('fixedheader');
+                    } else {
+                        if ($(document.body).hasClass('fixedheader'))
+                            $(document.body).removeClass('fixedheader');
+                    }
+                }
+            });
+
+            /*naptár hét hover*/
+            $('table.monthcalendar tr.week td.weekheader').hover(
+                function () {
+                    $(this).parent().addClass('hovered');
+                }, function () {
+                    $(this).parent().removeClass('hovered');
+                }
+            );
+
+            var bc = $('#breadcrumb > ul > li');
+            bc.css({ maxWidth: Math.floor(100 / bc.length) + '%' }).each(function (i, o) { $(o).attr('title', $(o).text()); });
+
+            $('#sec_bigvmenu li > a').click(function () {
+                if ($('#sec_bigvmenu').hasClass('showmobil')) {
+                    $('#sec_bigvmenu').removeClass('showmobil');
+                    $('#Menu_bigvmenu').removeClass('selected');
+                }
+            });
+        });
+
+        /* mobil !!! nézet */
+        function mobilheader(item, menu) {
+            $(item).toggleClass('showmobil');
+            var arr = ['#header2', '#header', '#sec_bigvmenu', '#sec_calendar', '#sec_filter'];
+            arr = jQuery.grep(arr, function( a ) {
+                return a !== item;
+            });
+
+            $(arr.join(', ')).removeClass('showmobil');
+
+            if (menu != null) {
+                menu = '#' + menu;
+                $(menu).toggleClass('selected');
+            }
+            arr = ['#Menu_Header2', '#Menu_Header', '#Menu_bigvmenu', '#Menu_calendar', '#Menu_filter'];
+            arr = jQuery.grep(arr, function (a) {
+                return a !== menu;
+            });
+
+            $(arr.join(', ')).removeClass('selected');
+        };
+    </script>
+
+	<script type="text/javascript" src="/Resources/Script/fi9TY3JpcHRzL0hvbWUuanM.js?l=hu&amp;v=D4E4B26E53F151B581A2"></script>
+<script type="text/javascript" src="/Resources/Script/fi8kQ29yZSQvU2NyaXB0cy9qcXVlcnkuc2Nyb2xsVG8uanM.js?l=hu&amp;v=AD25F04185BD899F5C01"></script>
+
+	<script type="text/javascript">//<![CDATA[
+url_savescenecategory = "/Home/SaveSceneCategory";
+url_savefilter = "/Home/SaveFilterSetting";
+url_home = "/Home";
+open_categories = "összes";
+close_categories = "használt";
+filtered = "<span class='filter right'>A teljes színtérlista megjelenítéséhez <a href='javascript:clear_category_filter();'>kapcsolja ki a szűrést</a></span>";
+custom = 0;
+//]]></script>
+
+
+	<script type="text/javascript">
+		var orig_flags = 47;
+		var orig_cats = 0;
+
+		var current_flags = 47;
+		var current_cats = 0;
+		var lastCategoryChooserId = 0;
+        var pageloaded = false;
+        var archivloaded = false;
+
+		$(function () {
+			$('#scene_cats > li > a').click(function (ev) {
+				var c = $(ev.currentTarget).data('cat');
+				var cat = c == '' ? 0 : 1 << (c - 1);
+
+                if($(ev.currentTarget).parent().hasClass("renaming"))
+                    return;
+
+                if ($('#scene_cats .renaming').length)
+                    cancel_renaming();
+
+				if ((current_cats == cat) && $(ev.currentTarget).parent().hasClass("editable") && (!$(ev.currentTarget).parent().hasClass("renaming"))) {
+					renamecat(c);
+                } else {
+				    current_cats = cat;
+				    filterscenes(current_flags, current_cats);
+                }
+			});
+			$('#scene_flags > li > a').click(function (ev) {
+				var flags = parseInt($(ev.currentTarget).data('flags'));
+				if (isNaN(flags))
+					return;
+
+				current_flags = flags;
+				filterscenes(current_flags, current_cats);
+			});
+			filterscenes(current_flags, current_cats);
+            pageloaded = true;
+		});
+
+		function savecatname(cat) {
+			//save
+			DexAjax({
+				url: '/Home/SaveCategoryName',
+				data: {
+					category: cat,
+					name: $("#cat_" + cat).val()
+				},
+				handler: function (res) {
+					 $("#scene_cats .renaming a span.c" + cat + " + b").text(res);
+					 cancel_renaming(cat, res);
+				}
+			});
+		}
+	</script>
+    </head>
+
+<body>
+
+    <div id="header1">
+        <div>
+            <div id="header1r">
+
+
+
+
+        <div class="onlinefriends">
+            <a href="javascript:;" class="icon">
+                <span class="count">0</span>
+            </a>
+            <div id="main_friends">
+
+                <div id="main_friendsemptytemplate" style="display:none;">
+                    <div class="nofriends">Nincsenek barátaid :(</div>
+                </div>
+                <div id="main_friendstemplate" class="main_friend" style="display:none;">
+                    <a href="/CSMS/Messages?partner_id=-999999" class="username"><span class="image"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=" alt=""></span><span class="name">@displayname@</span><div style="clear:both;"></div></a>
+                </div>
+                <div id="main_friendscontent">
+                    <div id="main_friendslist">
+                    <div class="nofriends">Nincsenek barátaid</div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            if (!window.sessionping) window.sessionping = {};
+            if (window.sessionping.Friends == null)
+                window.sessionping.Friends = '';
+
+            function show_allfriends() {
+                $('#main_friendslist .main_friend').show();
+                $('#show_allfriends').hide();
+            }
+        </script>
+
+
+        <div class="name"><a href="javascript:;" class="icon"></a><span title="Valaki"></span><div class="menu">
+                <div class="info">
+                    <a href="/My/Profile/ChangePicture" class="pic"><img src="/$Theme-edu3$/Content/Theme/NoPicture_Medium.png" alt="profilkép"></a>
+                    <div class="name">Valaki</div>
+                    <div class="email"><a href="/My/Profile/Modify">kiskuki@freemail.com</a></div>
+                    <div class="lastlogin">Utolsó belépés: <span class="since" title="2025-01-15T20:36:16">69 éve</span></div>
+                </div>
+            </div>
+        </div>
+            </div>
+            <div class="toplogo" onclick="location.href='/';">Szegedi Tudományegyetem</div>
+        </div>
+    </div>
+
+    <div id="spaceholder" class="hide" style="height: 114.2px;"></div>
+
+    <nav id="mobilheader">
+
+    <a href="/"></a><a href="javascript:;" onclick="mobilheader('#sec_calendar', this.id);" id="Menu_calendar">
+        </a><a href="javascript:;" onclick="mobilheader('#sec_filter', this.id);" id="Menu_filter">
+        </a><a href="javascript:;" onclick="mobilheader('#sec_bigvmenu', this.id);" id="Menu_bigvmenu">
+        </a><a href="javascript:;" onclick="mobilheader('#header', this.id);" id="Menu_Header">
+        </a><a href="javascript:;" onclick="mobilheader('#header2', this.id);" id="Menu_Header2"></a>
+
+        <div id="header2">
+            <ul>
+                <li><span class="langs">
+                <a href="https://www.coosp.etr.u-szeged.hu/Home?_lang=hu" class="lang lang_current">HU</a> <a href="https://www.coosp.etr.u-szeged.hu/Home?_lang=en" class="lang">EN</a> <a href="https://www.coosp.etr.u-szeged.hu/Home?_lang=de" class="lang">DE</a>
+                </span>
+                </li>
+
+            <li class="onlineusers"><a href="/Home/OnlineUsers">összes online felhasználó</a></li>
+            <li class="events"><a href="/Events">7 értesítés</a></li>
+            <li class="profil"><a href="/My/Profile">profil szerkesztése</a></li>
+            <li class="eventsettings"><a href="/My/Profile/EventSettings">eseményértesítők</a></li>
+            <li class="logout"><a href="/Account/Logout">kilépés</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <header id="header">
+        <nav id="header3">
+            <ul>
+            <li class="menu_scenes current"><a>színterek</a></li><li class="menu_folder"><a>Mappa</a></li><li class="menu_calendar"><a>ma</a></li><li class="menu_csms"><a href="javascript:;">üzenetek</a><script type="text/javascript">//<![CDATA[
+if (!window.sessionping) window.sessionping = {};
+window.sessionping.CSMS = '2025-01-16T15:49:10|null';
+SSE_subscribe('CSMS.messagecount', function(ev) { sessionping_callback_CSMS(ev.data); });
+csms_partner_template = '<div id="csms_leftpartner_@ID@" class="csms_partner" style="display:none;"><div class="csms_partnertitle" onclick="left_select_partner(&#39;/CSMS/LeftMessages?partner_id=%40ID%40&#39;, @ID@);"><span class="csms_partnername">@NAME@</span><span class="csms_partnerunreads">@UNREAD@</span><div style="clear:both;"></div></div><div class="csms_popup"><div id="csms_messages_@ID@" class="csms_messages"></div><div class="csms_newmessage" style="display:none;"><textarea name="message"></textarea><br/><div class="csms_leftbuttons control"><a class="linkbutton24" href="javascript:;" onclick="if (confirmdirty()) { left_close_partner(@ID@); };return false;" oncontextmenu="return false;" style="padding-left: 29px; background-image: url(/$Theme-edu3$/Content/Theme/new/ControlButtons/megsem.png); line-height: 24px;">Bez&#225;r&#225;s</a><a class="linkbutton24" href="javascript:;" onclick="if (confirmdirty()) { left_send_message(&#39;/CSMS/SendMessage&#39;, @ID@); };return false;" oncontextmenu="return false;" style="padding-left: 29px; background-image: url(/$Theme-edu3$/Content/Theme/new/ControlButtons/mentes.png); line-height: 24px;">K&#252;ld&#233;s</a></div><div style="clear:both;"></div></div><div class="csms_disabled_me" style="display:none;">A felhasználó nem engedélyezi az üzenetküldést!<div class="csms_leftbuttons control"><a class="linkbutton24" href="javascript:;" onclick="if (confirmdirty()) { left_close_partner(@ID@); };return false;" oncontextmenu="return false;" style="padding-left: 29px; background-image: url(/$Theme-edu3$/Content/Theme/new/ControlButtons/megsem.png); line-height: 24px;">Bez&#225;r&#225;s</a></div></div></div></div>'
+//]]></script><script type="text/javascript" src="/Resources/Script/fi8kQ1NNUyQvU2NyaXB0cy9jc21zLmpz.js?l=hu&amp;v=48547F7B65C9354F1AEB"></script>
+<div id="csms_message_count" class="count">+99</div><div id="csms_leftcontent"><div class="csms_allmessage"><a class="linkbutton2" id="csms_allmessage">összes üzenet</a></div><div id="csms_partners"><span class="csms_nomessage" style="display:none;">Nincs olvasatlan üzenet.</span><div id="csms_leftpartner_259719" class="csms_partner"><div class="csms_partnertitle"><span class="csms_partnername">Gambling</span><span class="csms_partnerunreads">69</span><div style="clear:both;"></div></div><div class="csms_popup"><div id="csms_messages_259719" class="csms_messages"></div><div class="csms_newmessage" style="display:none;"><textarea name="message"></textarea><br><div class="csms_leftbuttons control"><a class="linkbutton24" href="javascript:;" onclick="if (confirmdirty()) { left_close_partner(259719); };return false;" oncontextmenu="return false;" style="padding-left: 29px; background-image: url(/$Theme-edu3$/Content/Theme/new/ControlButtons/megsem.png); line-height: 24px;">Bezárás</a><a class="linkbutton24" href="javascript:;" onclick="if (confirmdirty()) { left_send_message('/CSMS/SendMessage', 259719); };return false;" oncontextmenu="return false;" style="padding-left: 29px; background-image: url(/$Theme-edu3$/Content/Theme/new/ControlButtons/mentes.png); line-height: 24px;">Küldés</a></div><div style="clear:both;"></div></div><div class="csms_disabled_me" style="display:none;">A felhasználó nem engedélyezi az üzenetküldést!<div class="csms_leftbuttons control"><a class="linkbutton24" href="javascript:;" onclick="if (confirmdirty()) { left_close_partner(259719); };return false;" oncontextmenu="return false;" style="padding-left: 29px; background-image: url(/$Theme-edu3$/Content/Theme/new/ControlButtons/megsem.png); line-height: 24px;">Bezárás</a></div></div></div></div></div></div></li><li class="menu_video"><a>Videó</a><ul><li class="video_schedule"><a>fogadóóra</a></li><li class="video_chat"><a>videochat</a></li></ul><script type="text/javascript" src="/Resources/Script/fi8kVmlkZW8kL1NjcmlwdHMvY2FsbC5qcw.js?l=hu&amp;v=06A8280CDAA8E542E16B"></script>
+<link rel="stylesheet" type="text/css">
+<script type="text/javascript">//<![CDATA[
+url_videocall = "/Video/Call";
+url_rejectvideocall = "/Video/Reject";
+//]]></script>
+</li><li class="menu_notes"><a>jegyzeteim</a></li><li class="menu_quiz"><a>kérdések</a><ul><li class="qbank"><a>Kérdésbank</a></li><li class="qform"><a>Kérdéssor-tár</a></li></ul></li><li class="menu_glossary"><a>Fogalomtár</a></li><li class="menu_trainer"><a>Tréner</a></li><li class="menu_news"><a>hírek</a><ul><li><a>Neptun</a></li><li><a>Modulo</a></li><li><a>SZTE-honlap</a></li><li><a>ETRdok</a></li><li><a>Videósúgó</a></li><li><a>Egyetemi telefonkönyv</a></li><li><a>Levél a helyi adminnak</a></li><li><a>ETR</a></li></ul></li><li class="menu_heatmap"><a>Heatmap</a></li>
+            </ul>
+        </nav>
+
+    </header><!-- #header-->
+    <div id="breadcrumb2">
+    <nav id="breadcrumb">
+        <ul>
+
+        </ul>
+
+        <div style="clear:both"></div>
+    </nav>
+    </div>
+
+<div id="wrapper">
+    <div id="widecontent">
+
+
+
+        <aside class="left"><div>
+            <section id="sec_filter">
+</section>
+        </div></aside>
+
+        <section class="realcontent">
+            <div class="icon" style="background-image: url(/$Theme-edu3$/Content/Theme/new/tool_scenes.png)"></div>
+            <h1>
+            <a class="imagebutton35" href="https://help45.coospace.hu/hu/redirector?t=RGFtw6FzZGkgWnNvbHQAR1NIMDFWADI5NjU5MABkYW16c29sdDA2QGdtYWlsLmNvbQBodHRwczovL3d3dy5jb29zcC5ldHIudS1zemVnZWQuaHUvAEhvbWUA" target="_blank" title="Súgó"><span class="img" style="background-image: url(/$Theme-edu3$/Content/Theme/new/tool_help.png)"></span></a>
+                <span class="title">Színterek</span>
+             <a class="imagebutton24" href="javascript:;" onclick="if (confirmdirty()) { changeview(1, this); };return false;" oncontextmenu="return false;" title="Tömör nézet"><span class="img" style="background-image: url(/$Theme-edu3$/Content/Theme/new/m_nezet_tomor.png)"></span></a><a class="imagebutton24 imagebutton24_highlighted" href="javascript:;" onclick="if (confirmdirty()) { changeview(0, this); };return false;" oncontextmenu="return false;" title="Lista nézet"><span class="img" style="background-image: url(/$Theme-edu3$/Content/Theme/new/m_nezet_normal.png)"></span></a><a class="imagebutton24" href="javascript:;" onclick="if (confirmdirty()) { changeview(2, this); };return false;" oncontextmenu="return false;" title="Képes nézet"><span class="img" style="background-image: url(/$Theme-edu3$/Content/Theme/new/m_nezet_kepes.png)"></span></a> <a class="imagebutton24" href="javascript:;" onclick="if (confirmdirty()) { show_categories(this); };return false;" oncontextmenu="return false;" title="Kategóriák"><span class="img" style="background-image: url(/$Theme-edu3$/Content/Theme/new/m_muveletek.png)"></span></a><div id="ajaxbusy" style="display:none; width:100%; text-align:center"><img src="/$Theme-edu3$/Content/Theme/ajaxLoader.gif" alt="ajax"></div>
+            </h1>
+
+
+    <div id="categoriescontainer"></div>
+
+	<div id="scenetreecontainer">
+
+
+<section id="main" class="scenes" >
+    <h2><a href="javascript:;" onclick="$(this).parent().next().slideToggle('slow');">2024/25/1</a></h2>
+
+
+    <ul class="list"><li class="scene vis" data-cats="0" data-flags="41">
+        <div class="scene"><div>
+            <span class="title">
+                <a href="asd" title="Ivóskurzus" class="name N">Ivóskurzus 1.</a></span>
+            <span class="leftmargin categorychooser">
+                <span class="bracket"><span class="invisible" title="Nincs kategória"></span></span></span></div>
+            <span class="fav_code">
+                <a class="btn_fav" title="Kedvencekhez hozzáadni">Kedvenc</a>
+                <span class="code">ASD42069Q</span></span>
+            <ul class="scene_tools">
+                <li>
+                    <a class="scene_tool" style="background-image: url(/$Theme-edu3$/Content/Theme/new/tool_forum.png)"></a>
+                    <span class="popupbox">
+                        <span class="head">Fórumok</span>
+                        <span>
+                            <a title="Kurzusfórum">Kurzusfórum</a></span></span></li>
+                <li>
+                    <a class="scene_tool" style="background-image: url(/$Theme-edu3$/Content/Theme/new/tool_newsboard.png)"></a>
+                    <span class="popupbox"><span class="head">Hirdetőtáblák</span>
+                        <span>
+                            <a title="Hirdetmények">Hirdetmények</a></span></span></li>
+                <li>
+                    <a class="scene_tool" style="background-image: url(/$Theme-edu3$/Content/Theme/new/tool_folder.png)"></a>
+                    <span class="popupbox"><span class="head">Mappák</span>
+                        <span>
+                            <a title="Dokumentumok">Dokumentumok</a></span></span></li></ul></div></li>
+        <li class="scene vis" data-cats="0" data-flags="37">
+</section>
+<section id="class">
+
+</section>
+
+	</div>
+
+
+
+
+
+        </section>
+
+
+
+    </div><!-- #widecontent-->
+
+
+
+</div><!-- #wrapper -->
+
+<footer id="footer">
+    <div>
+        <div class="left">Coolspace v6.9.911</div>
+        <div class="right">Copyright © 1920 MÉSZÁROS L.</div>
+    </div>
+</footer><!-- #footer -->
+
+<script type="text/javascript">
+    sessionKeepAlive('/Account/SessionPing', '/?from=sessionping');
+
+    SSE_init('SSE');
+</script>
+
+
+</body><chatgpt-sidebar data-gpts-theme="light"></chatgpt-sidebar><chatgpt-sidebar-popups data-gpts-theme="light"></chatgpt-sidebar-popups></html>
