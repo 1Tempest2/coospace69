@@ -96,7 +96,17 @@ close_categories = "használt";
 filtered = "<span class='filter right'>A teljes színtérlista megjelenítéséhez <a href='javascript:clear_category_filter();'>kapcsolja ki a szűrést</a></span>";
 custom = 0;
 //]]></script>
-
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const link = document.querySelector('a[href="coo1.html"]');
+        if (link) {
+            link.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent default navigation
+                window.location.href = "coo1.html"; // Navigate without the base URL
+            });
+        }
+    });
+</script>
 
 	<script type="text/javascript">
 		var orig_flags = 47;
@@ -298,7 +308,7 @@ url_rejectvideocall = "/Video/Reject";
     <ul class="list"><li class="scene vis" data-cats="0" data-flags="41">
         <div class="scene"><div>
             <span class="title">
-                <a href="asd" title="Ivóskurzus" class="name N">Ivóskurzus 1.</a></span>
+                <a href="https://1tempest2.github.io/coospace69/coo1.html" title="Ivóskurzus" class="name N">Ivóskurzus 1.</a></span>
             <span class="leftmargin categorychooser">
                 <span class="bracket"><span class="invisible" title="Nincs kategória"></span></span></span></div>
             <span class="fav_code">
